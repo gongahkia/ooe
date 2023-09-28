@@ -1,3 +1,5 @@
 # Pangsai 
 
-[Learning](https://youtu.be/1WpKsY9LBlY?si=ZuemaU0Eb1dZTkTt) to make a toy programming language in Python.
+[Learning](https://youtu.be/1WpKsY9LBlY?si=ZuemaU0Eb1dZTkTt) to make an extremely limited toy programming language in Python.
+
+* Continue learning from this time stamp: `00:55:25`

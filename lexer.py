@@ -1,3 +1,14 @@
+# this lexer is implemented by chatGPT 3.5
+
+# FUA
+# - learn regex to better implement additional syntax
+# - implement additional syntax checks
+    # - other kinds of brackets
+    # - actual coding syntax
+# - separate job of lexer, parser and interpreter 
+
+# ---
+
 # handles lexical analysis --> left to right
 
 import re # regex for easy lexing

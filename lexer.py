@@ -1,23 +1,55 @@
-# this lexer is implemented by chatGPT 3.5
+# this lexer was originally implemented by chatGPT 3.5
+
+# ---
 
 # FUA
-# - learn regex to better implement additional syntax
-# - implement additional syntax checks
+# - learn regex to better implement additional syntax from https://regexone.com/lesson/introduction_abcs
+# - implement additional syntax checks under the grammer_pattern array
     # - other kinds of brackets
-    # - actual coding syntax
+    # - other syntax for practice markup language
 # - separate job of lexer, parser and interpreter 
 
 # ---
 
 # handles lexical analysis --> left to right
 
-import re # regex for easy lexing
+import re # python regex library for easy lexing
 
+# ideas for ooe syntax
+    # italicised `text`
+    # bolded *text*
+    # underlined _text_
+    # highlighted &text&
+    # header +text+
+        # header depth ++ reflected by number of +, max left depth of 6
+    # quotes @quotes text@
+    # tables
+        # table %table name; column name; column name; column name%
+            # column names separated by semicolons
+        # table values $table value; table value; table value$
+            # table values separated by semicolons
+    # lists
+        # bulleted lists
+            # bullet lists -list name; list value; list value-
+                # list values separated by semicolons
+        # numbered lists
+            # numbered list !list name; list value; list value!
+
+# defines the grammer rules for the markup language
+ # order of patterns matters since they're checked from top to bottom. Place more specific patterns before generic ones.
 grammer_pattern = [
-    ('NUM', r'\d+(\.\d+)?'), # matches integers and floating point
-    ('OP', r'[\+\-\*/]'), # matches four basic arithmetic operators
-    ('LPARENT', r'\('), # matches any occurence of left paranthesis
-    ('RPARENT', r'\)')
+    ('ITAL', r'\`'),
+    ('BOLD', r'\*'),
+    ('UNDER', r'\_'),
+    ('HIGH', r'\&'),
+    ('HEADER',r'\+{1,6}'),
+    ('QUOTE', r'\@'),
+    ('TABLETOP', r'\%'),
+    ('TABLECONT', r'\$'),
+    ('BULLIST', r'\-'),
+    ('NUMLIST', r'\!'),
+    ('NEWLINE', r'\^\^'),
+    ('WORD', r'[A-Za-z]+'),
         ]
 
 def lexer(input_string):
@@ -35,13 +67,3 @@ def lexer(input_string):
         if not match_val:
             raise ValueError(f"cb follow the syntax: {input_string}")
     return token_array
-
-if __name__ == "__main__": # checks whether this file being run directly from interpreter
-    # if script is being run directly using 'python3', __name__ variable takes on the value of string "__main__"
-    # elif script is imported as a module in another file, then __name__ will take on the value of original script file name minus .py file extenstion
-    user_input = input("Enter an arithmetic expression: ")
-    try:
-        token_array_1 = lexer(user_input)
-        print(f"Token array: {token_array_1}")
-    except ValueError as e:
-        print(f"Error log: {e}")

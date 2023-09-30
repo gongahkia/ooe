@@ -11,7 +11,7 @@ import interpreter as inter # work on this later
 
 def main():
     file_name:str = input("Name of ooe file:")
-    fhand = open(f"{file_name}.ooe", "r")
+    fhand = open(f"../samples/{file_name}.ooe", "r")
     file_str:str = ""
     for line in fhand:
         file_str += f"{line.strip()} ^^ "

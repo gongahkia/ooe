@@ -1,15 +1,17 @@
-# required imports
-
 # FUA: 
-# - interpreter will need to actively handle the count of each kind of stylised word since we are not distinguishing between left and right for any styling option
-# - implement check for EVERY TOKEN that it is being used properly
-# - incorporate a bash script that automatically calls the ooe interpreter with the 'ooe{version_number}' command called in terminal
-# implement the check i implemented for ITAL for every other case that functions the same way
-# DEBUG ital issue, also implement check for incomplete syntax even if the * is the last word of the entire document
+# consider if i want to make my life easier by distinguishing between left and right parantheses when lexing, if so EDIT lexer.py accordingly
+# implement check for EVERY TOKEN that it is being used properly, implement a generic pair check and also different checks for different styles
+    # paired token (ALL)
+    # header (count number of +)
+    # table (split by ;)
+    # bul list, num list (split by ;, optionally count number of items)
+# implement check for incomplete unpaired syntax even if the * is the last word of the entire document, or if the stylised text spans across multiple words
+# incorporate a bash script that automatically calls the ooe interpreter with the 'ooe{version_number}' command called in terminal
 
 def parser_interpreter(token_array:list):
     # print(token_array)
     final_string:str = ""
+    # interpreter will need to actively handle the count of each kind of stylised word since we are not distinguishing between left and right for any styling option
     matching_counter_map:dict = {"ital_count":0, "bold_count":0, "under_count":0, "high_count":0, "header_count":0, "quote_count":0, "tabletop_count":0, "tablecont_count":0, "bullist_count":0, "numlist_count":0}
     for i in range(len(token_array)):
         print(token_array[i])
@@ -17,19 +19,7 @@ def parser_interpreter(token_array:list):
             case "ITAL":
                 final_string = final_string.rstrip(" ") # python strings are immutable, the rstrip() method will return a copy of the word
                 final_string += "*"
-                match matching_counter_map["ital_count"]:
-                    case 0: # should run once when there is no active waiting count for bold
-                        matching_counter_map["ital_count"] += 1
-                    case 1:
-                        if token_array[i+2]["type"] == "ITAL":
-                            matching_counter_map["ital_count"] += 1
-                        else:
-                            break
-                            print(f"Syntax error detected. Unmatched italic after the word {token_array[i+1]['value']}.")
-                    case 2:
-                        matching_counter_map["ital_count"] = 0
-                    case _:
-                        print("Edge case hit, debug from this line!")
+                # add code here!
             case "BOLD":
                 final_string = final_string.rstrip(" ") 
                 final_string += "**"

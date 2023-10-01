@@ -10,8 +10,8 @@ import interpreter as inter # work on this later
 # --- 
 
 def main():
-    file_name:str = input("Name of ooe file:")
-    fhand = open(f"../samples/{file_name}.ooe", "r")
+    file_name:str = input("Name of ooe file:").split(".")[0]
+    fhand = open(f"../samples/{file_name}.ooe", "r") # opens ooe files in the samples folder
     file_str:str = ""
     for line in fhand:
         file_str += f"{line.strip()} ^^ "
@@ -25,4 +25,5 @@ def main():
 # ---
 
 # main event loop
-inter.print_token_array(main())
+output_src = inter.parser_interpreter(main())
+print(output_src)

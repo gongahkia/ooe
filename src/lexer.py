@@ -1,39 +1,6 @@
-# this lexer was originally implemented by chatGPT 3.5
-
-# ---
-
-# FUA
-# - learn regex to better implement additional syntax from https://regexone.com/lesson/introduction_abcs
-# - implement additional syntax checks under the grammer_pattern array
-    # - other kinds of brackets
-    # - other syntax for practice markup language
-# - separate job of lexer, parser and interpreter 
-
-# ---
-
 # handles lexical analysis --> left to right
 
 import re # python regex library for easy lexing
-
-# ideas for ooe syntax
-    # italicised `text`
-    # bolded *text*
-    # underlined _text_
-    # highlighted &text&
-    # header +text+
-        # header depth ++ reflected by number of +, max left depth of 6
-    # quotes @quotes text@
-    # tables
-        # table %table name; column name; column name; column name%
-            # column names separated by semicolons
-        # table values $table value; table value; table value$
-            # table values separated by semicolons
-    # lists
-        # bulleted lists
-            # bullet lists -list name; list value; list value-
-                # list values separated by semicolons
-        # numbered lists
-            # numbered list !list name; list value; list value!
 
 # defines the grammer rules for the markup language
  # order of patterns matters since they're checked from top to bottom. Place more specific patterns before generic ones.
@@ -49,7 +16,7 @@ grammer_pattern = [
     ('BULLIST', r'\-'),
     ('NUMLIST', r'\!'),
     ('NEWLINE', r'\^\^'),
-    ('WORD', r'[A-Za-z]+'),
+    ('WORD', r'[A-Za-z;]+'),
         ]
 
 def lexer(input_string):
@@ -60,9 +27,9 @@ def lexer(input_string):
             regex_1 = re.compile(regex_pattern) # .compile() method takes in a string and converts it to a machine readable regular expression pattern which can be applied to a string
             match_val = regex_1.match(input_string)
             if match_val:
-                value = match_val.group(0)
-                token_array.append((data_type, value))
-                input_string = input_string[len(value):].lstrip() # iterating after each character / chunk that matches regex
+                matched_token = match_val.group(0)
+                token_array.append({"type": data_type, "value": matched_token}) # returns a list of dictionaries that contain the data type and value of each token
+                input_string = input_string[len(matched_token):].lstrip() # iterating after each character / chunk that matches regex
                 break
         if not match_val:
             raise ValueError(f"cb follow the syntax: {input_string}")

@@ -1,8 +1,8 @@
-# ooe
+# `ooe`
 
 ## Why the name?
 
-One of my Uni friends once informed me, "ooe".
+One of my friends once shared it with me, as a warning.
 
 ## What is ***ooe***?
 
@@ -29,7 +29,21 @@ However, as outlined in the book [Domain specific languages](https://www.amazon.
 
 ## ***ooe*** syntax
 
-To be implemented.
+> ***WIP***
+
+| stylisation | syntax |
+| :---: | :---: |
+| italics | \` ` |
+| bolded | * *|
+| underlined | _ _ |
+| highlighted | & & |
+| header | + + |
+| header depth max 6 | ++++++ +++++++
+| quotes | @ @ |
+| table name, column names | % ; ; ; % |
+| column values | $ ; ; $
+| bulleted list | - ; ; ; - |
+| numbered list | ! ; ; ; ! |
 
 ---
 

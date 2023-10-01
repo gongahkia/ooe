@@ -1,8 +1,8 @@
 # `ooe`
 
-## Why the name?
+## How did you choose the name?
 
-One of my friends once shared it with me, as a warning.
+Ooe.
 
 ## What is ***ooe***?
 

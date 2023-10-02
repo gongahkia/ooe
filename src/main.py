@@ -9,8 +9,13 @@ import interpreter as inter # work on this later
 
 # --- 
 
+def debug_print_original():
+    fhand = open(f"../samples/yes.ooe", "r") # opens ooe files in the samples folder
+    for line in fhand:
+        print(line,end="")
+    
 def main():
-    file_name:str = input("Name of ooe file:").split(".")[0]
+    file_name:str = input("Name of ooe file: ").split(".")[0]
     fhand = open(f"../samples/{file_name}.ooe", "r") # opens ooe files in the samples folder
     file_str:str = ""
     for line in fhand:
@@ -25,5 +30,9 @@ def main():
 # ---
 
 # main event loop
-output_src = inter.parser_interpreter(main())
+output_src:str = inter.parser_interpreter(main())
+print(f"\n{'-' * 10}\n\nInput:\n")
+debug_print_original()
+print(f"\n\n{'-' * 10}\n\nOutput:\n")
 print(output_src)
+print(f"{'-' * 10}")

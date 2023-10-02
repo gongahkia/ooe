@@ -9,14 +9,14 @@ grammer_pattern = [
     ('BOLD', r'\*'),
     ('UNDER', r'\_'),
     ('HIGH', r'\&'),
-    ('HEADER',r'\+{1,6}'),
     ('QUOTE', r'\@'),
+    ('HEADER',r'\+{1,6}'),
     ('TABLETOP', r'\%'),
     ('TABLECONT', r'\$'),
     ('BULLIST', r'\-'),
     ('NUMLIST', r'\!'),
     ('NEWLINE', r'\^\^'),
-    ('WORD', r'[A-Za-z;]+'),
+    ('WORD', r'[A-Za-z0-9;]+'), # might have to allow for other normal punctuation lmao
         ]
 
 def lexer(input_string):

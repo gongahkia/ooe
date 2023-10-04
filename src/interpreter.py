@@ -6,11 +6,13 @@
     # table (split by ;)
     # bul list, num list (split by ;, optionally count number of items)
 # incorporate a bash script that automatically calls the ooe interpreter with the 'ooe{version_number}' command called in terminal
+# add colored text for the ooe interpreter has stopped compiling part!
 
 def parser_interpreter(token_array:list):
     print(token_array)
     final_string:str = ""
-    mcm:dict = {"ital_count":True, "bold_count":True, "under_count":True, "high_count":True, "quote_count":True, "header_count":0, "tabletop_count":0, "tablecont_count":0, "bullist_count":0, "numlist_count":0}
+    mcm:dict = {"ital_count":True, "bold_count":True, "under_count":True, "high_count":True, "quote_count":True, "header_count":True, "tabletop_count":0, "tablecont_count":0, "bullist_count":0, "numlist_count":0}
+    header_stored_value:int = 0
     line_counter:int = 1
 
     for i in range(len(token_array)):
@@ -146,7 +148,84 @@ def parser_interpreter(token_array:list):
                     final_string += "</blockquote>"
                     final_string += " "
 
+            # DONE ✅
             case "HEADER":
+                if mcm["header_count"]:
+                    header_initial_index = i
+                    # print(mcm["header_count"])
+                    mcm["header_count"] = False
+                    header_count:int = list(token_array[i]["value"]).count("+")
+                    header_stored_value = header_count 
+                    header_value:str = ""
+                    match header_count:
+                        case 0:
+                            print(f"Syntax error detected in NULL HEADER COUNT [+] on line {line_counter}.")
+                            print("OOE interpreter has stopped compiling.")
+                            return final_string.rstrip(" ")
+                        case 1:
+                            header_value = "h1"
+                        case 2:
+                            header_value = "h2"
+                        case 3:
+                            header_value = "h3"
+                        case 4:
+                            header_value = "h4"
+                        case 5:
+                            header_value = "h5"
+                        case 6:
+                            header_value = "h6"
+                        case _:
+                            print(f"Syntax error detected in EXCESS HEADER COUNT [+] on line {line_counter}.")
+                            print(f"MAX HEADER COUNT possible is 6.")
+                            print("OOE interpreter has stopped compiling.")
+                            return final_string.rstrip(" ")
+                    final_string += f"<{header_value}>" # REPLACE THIS!
+                    type_array = [pair["type"] for pair in token_array[header_initial_index+1:]]
+                    if "HEADER" not in type_array:
+                        # print(type_array)
+                        print(f"Syntax error detected in UNMATCHED HEADER ICON [+] on line {line_counter}.")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                    elif type_array.index("NEWLINE") < type_array.index("HEADER"):
+                        # print(type_array)
+                        print(f"Syntax error detected in UNMATCHED HEADER ICON [+] on line {line_counter}.")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                else:
+                    # print(mcm["header_count"])
+                    mcm["header_count"] = True
+                    header_count = list(token_array[i]["value"]).count("+")
+                    if header_stored_value != header_count:
+                        print(f"Syntax error detected in UNMATCHED HEADER COUNT [+] on line {line_counter}.")
+                        print(f"Number of HEADER ICONS must match [+].")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                    header_value = ""
+                    match header_count:
+                        case 0:
+                            print(f"Syntax error detected in NULL HEADER COUNT [+] on line {line_counter}.")
+                            print("OOE interpreter has stopped compiling.")
+                            return final_string.rstrip(" ")
+                        case 1:
+                            header_value = "h1"
+                        case 2:
+                            header_value = "h2"
+                        case 3:
+                            header_value = "h3"
+                        case 4:
+                            header_value = "h4"
+                        case 5:
+                            header_value = "h5"
+                        case 6:
+                            header_value = "h6"
+                        case _:
+                            print(f"Syntax error detected in EXCESS HEADER COUNT [+] on line {line_counter}.")
+                            print(f"MAX HEADER COUNT possible is 6.")
+                            print("OOE interpreter has stopped compiling.")
+                            return final_string.rstrip(" ")
+                    final_string = final_string.rstrip(" ") 
+                    final_string += f"</{header_value}>" # REPLACE THIS!
+                    final_string += " "
                 final_string = final_string.rstrip(" ") 
                 pass
 

@@ -10,8 +10,6 @@ Ooe.
 
 A badly constructed markup language, ending with the file extension `.ooe`. Think more [groff](https://www.gnu.org/software/groff/), less [markdown](https://www.markdownguide.org/). 
 
-> Not to shit on groff though...
-
 The ***ooe*** interpreter compiles `ooe` script to `html`.
 
 ## How does ***ooe*** work?

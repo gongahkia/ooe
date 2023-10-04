@@ -4,7 +4,7 @@ import re # python regex library for easy lexing
 
 # defines the grammer rules for the markup language
  # order of patterns matters since they're checked from top to bottom. Place more specific patterns before generic ones.
-grammer_pattern = [
+grammer_pattern:list = [
     ('ITAL', r'\`'),
     ('BOLD', r'\*'),
     ('UNDER', r'\_'),
@@ -19,8 +19,8 @@ grammer_pattern = [
     ('WORD', r'[A-Za-z0-9;]+'), # might have to allow for other normal punctuation lmao
         ]
 
-def lexer(input_string):
-    token_array = []
+def lexer(input_string:str):
+    token_array:list = []
     while input_string: # iterates over each 1,2,4 byte character in input string
         match_val = None # variable initialisation and assignment 
         for data_type, regex_pattern in grammer_pattern:

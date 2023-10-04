@@ -18,6 +18,8 @@ def parser_interpreter(token_array:list):
         # print(token_array[i])
 
         match token_array[i]["type"]:
+
+            # DONE ✅
             case "ITAL":
                 if mcm["ital_count"]:
                     ital_initial_index = i
@@ -42,6 +44,7 @@ def parser_interpreter(token_array:list):
                     final_string += "</i>"
                     final_string += " "
 
+            # DONE ✅
             case "BOLD":
                 if mcm["bold_count"]:
                     bold_initial_index = i
@@ -50,7 +53,7 @@ def parser_interpreter(token_array:list):
                     final_string += "<b>"
                     # CHECKS FOR WRONG UNMATCHED PAIRS SYNTAX
                     # CHECKS FOR WHETHER BOLDED SYNTAX IS ON SAME LINE OR NEWLINE
-                    type_array:list = [pair["type"] for pair in token_array[bold_initial_index+1:]]
+                    type_array = [pair["type"] for pair in token_array[bold_initial_index+1:]]
                     if "BOLD" not in type_array:
                         # print(type_array)
                         print(f"Syntax error detected in UNMATCHED BOLD ICON [*] on line {line_counter}.")
@@ -68,13 +71,14 @@ def parser_interpreter(token_array:list):
                     final_string += "</b>"
                     final_string += " "
 
+            # DONE ✅
             case "UNDER":
                 if mcm["under_count"]:
                     under_initial_index = i
                     # print(mcm["under_count"])
                     mcm["under_count"] = False
                     final_string += "<u>"
-                    type_array:list = [pair["type"] for pair in token_array[under_initial_index+1:]]
+                    type_array = [pair["type"] for pair in token_array[under_initial_index+1:]]
                     if "UNDER" not in type_array:
                         # print(type_array)
                         print(f"Syntax error detected in UNMATCHED UNDERLINE ICON [_] on line {line_counter}.")
@@ -92,13 +96,14 @@ def parser_interpreter(token_array:list):
                     final_string += "</u>"
                     final_string += " "
 
+            # DONE ✅
             case "HIGH":
                 if mcm["high_count"]:
                     high_initial_index = i
                     # print(mcm["high_count"])
                     mcm["high_count"] = False
                     final_string += "<mark>"
-                    type_array:list = [pair["type"] for pair in token_array[high_initial_index+1:]]
+                    type_array = [pair["type"] for pair in token_array[high_initial_index+1:]]
                     if "HIGH" not in type_array:
                         # print(type_array)
                         print(f"Syntax error detected in UNMATCHED HIGHLIGHT ICON [&] on line {line_counter}.")
@@ -116,13 +121,14 @@ def parser_interpreter(token_array:list):
                     final_string += "</mark>"
                     final_string += " "
 
+            # DONE ✅
             case "QUOTE":
                 if mcm["quote_count"]:
                     quote_initial_index = i
                     # print(mcm["quote_count"])
                     mcm["quote_count"] = False
                     final_string += "<blockquote>"
-                    type_array:list = [pair["type"] for pair in token_array[quote_initial_index+1:]]
+                    type_array = [pair["type"] for pair in token_array[quote_initial_index+1:]]
                     if "QUOTE" not in type_array:
                         # print(type_array)
                         print(f"Syntax error detected in UNMATCHED QUOTATION ICON [@] on line {line_counter}.")
@@ -160,14 +166,17 @@ def parser_interpreter(token_array:list):
                 final_string = final_string.rstrip(" ") 
                 pass
 
+            # DONE ✅
             case "NEWLINE":
                 final_string += "\n"
                 line_counter += 1
 
+            # DONE ✅
             case "WORD":
                 final_string += token_array[i]["value"]
                 final_string += " "
 
+            # DONE ✅
             case _:
                 print("edge case detected") # error logging
 

@@ -40,8 +40,7 @@ However, as outlined in the book [Domain specific languages](https://www.amazon.
 | header | + + | ✅ |
 | header depth max 6 | ++++++ ++++++ | ✅ |
 | quotes | @ @ | ✅ |
-| table name, column names | % ; ; ; % | ***WIP*** |
-| column values | \$ ; ; $ | ***WIP*** |
+| column names, column values | % ; $ ; % | ***WIP*** |
 | bulleted list | - ; ; ; - | ✅ |
 | numbered list | ! ; ; ; ! | ✅ |
 

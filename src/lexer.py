@@ -11,12 +11,11 @@ grammer_pattern:list = [
     ('HIGH', r'\&'),
     ('QUOTE', r'\@'),
     ('HEADER',r'\+{1,6}'),
-    ('TABLETOP', r'\%'),
-    ('TABLECONT', r'\$'),
+    ('TABLE', r'\%'),
     ('BULLIST', r'\-'),
     ('NUMLIST', r'\!'),
     ('NEWLINE', r'\^\^'),
-    ('WORD', r'[A-Za-z0-9;]+'), # might have to allow for other normal punctuation lmao
+    ('WORD', r'[A-Za-z0-9;$]+'), # might have to allow for other normal punctuation lmao
         ]
 
 def lexer(input_string:str):

@@ -7,17 +7,23 @@
     # bul list, num list (split by ;, optionally count number of items)
 # incorporate a bash script that automatically calls the ooe interpreter with the 'ooe{version_number}' command called in terminal
 # add colored text for the ooe interpreter has stopped compiling part!
+# add in all html boilerplate code, such as <!DOCTYPE HTML>
+# allow for optional title as well or just take title of existing file as html file title
 
 def parser_interpreter(token_array:list):
-    print(token_array)
+    # print(token_array)
     final_string:str = ""
-    mcm:dict = {"ital_count":True, "bold_count":True, "under_count":True, "high_count":True, "quote_count":True, "header_count":True, "tabletop_count":0, "tablecont_count":0, "bullist_count":0, "numlist_count":0}
+    mcm:dict = {"ital_count":True, "bold_count":True, "under_count":True, "high_count":True, "quote_count":True, "header_count":True, "tabletop_count":0, "tablecont_count":0, "bullist_count":True, "numlist_count":True}
     header_stored_value:int = 0
+    bullist_check:bool = False
+    bullist_items_word:str = ""
+    numlist_check:bool = False
+    numlist_items_word:str = ""
     line_counter:int = 1
 
     for i in range(len(token_array)):
 
-        # print(token_array[i])
+        print(token_array[i])
 
         match token_array[i]["type"]:
 
@@ -237,13 +243,93 @@ def parser_interpreter(token_array:list):
                 final_string = final_string.rstrip(" ") 
                 pass
 
+            # DONE ✅
             case "BULLIST":
-                final_string = final_string.rstrip(" ") 
-                pass
+                if mcm["bullist_count"]:
+                    bullist_initial_index = i
+                    # print(mcm["bullist_count"])
+                    bullist_check = True
+                    mcm["bullist_count"] = False
+                    final_string += "<ul>" 
+                    type_array = [pair["type"] for pair in token_array[bullist_initial_index+1:]]
+                    if "BULLIST" not in type_array:
+                        # print(type_array)
+                        print(f"Syntax error detected in UNMATCHED BULLET LIST ICON [-] on line {line_counter}.")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                    elif type_array.index("NEWLINE") < type_array.index("BULLIST"):
+                        # print(type_array)
+                        print(f"Syntax error detected in UNMATCHED BULLET LIST ICON [-] on line {line_counter}.")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                else:
+                    # print(mcm["bullist_count"])
+                    bullist_check = False
+                    mcm["bullist_count"] = True
+                    bullist_items_array:list = bullist_items_word.split(";")
+                    print(len(bullist_items_array))
+                    match len(bullist_items_array):
+                        case 0:
+                            print("How did you even hit this edge case? Send me a message on github bro / sis, you a real one <3")
+                        case 1:
+                            if len(bullist_items_array[0]) == 0:
+                                print(f"Syntax error detected in EMPTY BULLET LIST on line {line_counter}.")
+                                print("OOE interpreter has stopped compiling.")
+                                return final_string.rstrip(" ")
+                            else:
+                                final_string += f'<li>{bullist_items_array[0].strip(" ")}</li>'
+                                final_string += " "
+                        case _:
+                            for item in bullist_items_array:
+                                final_string += f'<li>{item.strip(" ")}</li>'
+                                final_string += " "
+                    final_string = final_string.rstrip(" ") 
+                    final_string += "</ul>"
+                    final_string += " "
 
+            # DONE ✅
             case "NUMLIST":
-                final_string = final_string.rstrip(" ") 
-                pass
+                if mcm["numlist_count"]:
+                    numlist_initial_index = i
+                    # print(mcm["numlist_count"])
+                    numlist_check = True
+                    mcm["numlist_count"] = False
+                    final_string += "<ol>" 
+                    type_array = [pair["type"] for pair in token_array[numlist_initial_index+1:]]
+                    if "NUMLIST" not in type_array:
+                        # print(type_array)
+                        print(f"Syntax error detected in UNMATCHED NUMBERED LIST ICON [!] on line {line_counter}.")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                    elif type_array.index("NEWLINE") < type_array.index("NUMLIST"):
+                        # print(type_array)
+                        print(f"Syntax error detected in UNMATCHED NUMBERED LIST ICON [!] on line {line_counter}.")
+                        print("OOE interpreter has stopped compiling.")
+                        return final_string.rstrip(" ")
+                else:
+                    # print(mcm["numlist_count"])
+                    numlist_check = False
+                    mcm["numlist_count"] = True
+                    numlist_items_array:list = numlist_items_word.split(";")
+                    print(len(numlist_items_array))
+                    match len(numlist_items_array):
+                        case 0:
+                            print("How did you even hit this edge case? Send me a message on github bro / sis, you a real one <3")
+                        case 1:
+                            if len(numlist_items_array[0]) == 0:
+                                print(f"Syntax error detected in EMPTY NUMBERED LIST on line {line_counter}.")
+                                print("OOE interpreter has stopped compiling.")
+                                return final_string.rstrip(" ")
+                            else:
+                                final_string += f'<li>{numlist_items_array[0].strip(" ")}</li>'
+                                final_string += " "
+                        case _:
+                            for item in numlist_items_array:
+                                final_string += f'<li>{item.strip(" ")}</li>'
+                                final_string += " "
+                    final_string = final_string.rstrip(" ") 
+                    final_string += "</ol>"
+                    final_string += " "
 
             # DONE ✅
             case "NEWLINE":
@@ -252,6 +338,14 @@ def parser_interpreter(token_array:list):
 
             # DONE ✅
             case "WORD":
+                if bullist_check:
+                    bullist_items_word += f'{(token_array[i]["value"])} '
+                    # print(token_array[i]["value"])
+                    continue
+                elif numlist_check:
+                    numlist_items_word += f'{token_array[i]["value"]} '
+                    # print(token_array[i]["value"])
+                    continue
                 final_string += token_array[i]["value"]
                 final_string += " "
 

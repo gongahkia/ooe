@@ -31,21 +31,19 @@ However, as outlined in the book [Domain specific languages](https://www.amazon.
 
 ## ***ooe*** syntax
 
-> ***WIP***
-
-| stylisation | syntax |
-| :---: | :---: |
-| italics | \` ` |
-| bolded | * *|
-| underlined | _ _ |
-| highlighted | & & |
-| header | + + |
-| header depth max 6 | ++++++ ++++++ |
-| quotes | @ @ |
-| table name, column names | % ; ; ; % |
-| column values | \$ ; ; $ |
-| bulleted list | - ; ; ; - |
-| numbered list | ! ; ; ; ! |
+| stylisation | syntax | implementation status |
+| :---: | :---: | :---: |
+| italics | \` ` | ✅ |
+| bolded | * * | ✅ |
+| underlined | _ _ | ✅ |
+| highlighted | & & | ✅ |
+| header | + + | ✅ |
+| header depth max 6 | ++++++ ++++++ | ✅ |
+| quotes | @ @ | ✅ |
+| table name, column names | % ; ; ; % | ***WIP*** |
+| column values | \$ ; ; $ | ***WIP*** |
+| bulleted list | - ; ; ; - | ✅ |
+| numbered list | ! ; ; ; ! | ✅ |
 
 ---
 

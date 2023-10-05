@@ -20,7 +20,7 @@ def parser_interpreter(input_tuple:tuple):
 
     for i in range(len(token_array)):
 
-        print(token_array[i])
+        # print(token_array[i])
 
         match token_array[i]["type"]:
 
@@ -400,4 +400,5 @@ def parser_interpreter(input_tuple:tuple):
     
     # html boilerplate code
     final_string += "</body>\n</html>"
-    return final_string.rstrip(" ")
+    print(f"OOE has finished compiling your file.\n{file_name}.html file was created.")
+    return (file_name, final_string.rstrip(" "))

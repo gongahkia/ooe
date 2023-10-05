@@ -22,6 +22,7 @@ def main():
     file_str:str = ""
     for line in fhand:
         file_str += f"{line.strip()} ^^ "
+    fhand.close()
     # print(file_str, end="") # for debugging
     try:
         token_array_1 = lx.lexer(file_str)
@@ -31,10 +32,8 @@ def main():
 
 # ---
 
-# main event loop
-output_src:str = inter.parser_interpreter(main())
-print(f"\n{'-' * 10}\n\nInput:\n")
-debug_print_original()
-print(f"\n\n{'-' * 10}\n\nOutput:\n")
-print(output_src)
-print(f"{'-' * 10}")
+parsed_tuple_output:tuple = inter.parser_interpreter(main())
+file_name, output_src = parsed_tuple_output[0], parsed_tuple_output[1]
+fhand = open(f"{file_name}.html", "w")
+fhand.write(output_src)
+fhand.close()

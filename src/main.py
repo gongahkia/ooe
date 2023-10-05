@@ -11,14 +11,14 @@ import interpreter as inter # work on this later
 
 # --- 
 
-def debug_print_original():
+"""def debug_print_original():
     fhand = open(f"../samples/yes.ooe", "r") # opens ooe files in the samples folder
     for line in fhand:
-        print(line,end="")
+        print(line,end="")"""
     
 def main():
     file_name:str = input("Name of ooe file: ").split(".")[0]
-    fhand = open(f"../samples/{file_name}.ooe", "r") # opens ooe files in the samples folder
+    fhand = open(f"{file_name}.ooe", "r") # opens ooe files in the samples folder
     file_str:str = ""
     for line in fhand:
         file_str += f"{line.strip()} ^^ "

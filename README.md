@@ -29,7 +29,7 @@ Know that in general, implementing a programming language interpreter (such as t
 
 However, as outlined in the book [Domain specific languages](https://www.amazon.com/Domain-Specific-Languages-Addison-Wesley-Signature-Fowler/dp/0321712943), most markup languages don't even have a well-defined AST, and occasionally skip implementation of the parser altogether. That is what I will be doing for ***ooe***, and as such, will really only be implementing anything close to resembling a conventional lexer, alongside a frankenstien abodmination of an interpreter cum half-parser. We'll see how it goes :<.
 
-## ***ooe*** syntax
+## Language syntax
 
 | stylisation | syntax | implementation status |
 | :---: | :---: | :---: |
@@ -43,6 +43,29 @@ However, as outlined in the book [Domain specific languages](https://www.amazon.
 | column names, column values | % ; $ ; % | ✅ |
 | bulleted list | - ; ; ; - | ✅ |
 | numbered list | ! ; ; ; ! | ✅ |
+
+## Usage
+
+To try out `ooe`...
+
+1. Run the following commands in your terminal.
+
+```console
+$ git clone https://github.com/gongahkia/ooe
+$ cd ooe/src
+```
+
+2. Create a `.ooe` file following the language syntax specified above. 
+
+> *Don't worry, the OOE compiler will let you know if there is an issue with your syntax.*
+
+3. Run the `main.py` file.
+
+```console
+$ Python3.11 main.py
+```
+
+4. OOE will compile the `.ooe` file to `.html` and create the new `.html` file in the same file directory as your `.ooe` source file.
 
 ---
 

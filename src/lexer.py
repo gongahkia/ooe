@@ -15,7 +15,7 @@ grammer_pattern:list = [
     ('BULLIST', r'\-'),
     ('NUMLIST', r'\!'),
     ('NEWLINE', r'\^\^'),
-    ('WORD', r'[A-Za-z0-9;$]+'), # might have to allow for other normal punctuation lmao
+    ('WORD', r'[A-Za-z0-9;,.?$]+'),
         ]
 
 def lexer(input_string:str):

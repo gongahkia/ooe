@@ -4,13 +4,6 @@ import interpreter as inter # work on this later
 
 # --- 
 
-# FUA: 
-# - eventually, rewrite this segment of code into a function, and allow for ooe code to be read from a whole ooe file
-# incorporate a bash script that automatically calls the ooe interpreter with the 'ooe{version_number}' command called in terminal
-# allow for optional title as well or just take title of existing file as html file title
-
-# --- 
-
 """def debug_print_original():
     fhand = open(f"../samples/yes.ooe", "r") # opens ooe files in the samples folder
     for line in fhand:

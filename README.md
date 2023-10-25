@@ -69,6 +69,10 @@ $ Python3.11 main.py
 
 4. OOE will compile the `.ooe` file to `.html` and create the new `.html` file in the same file directory as your `.ooe` source file.
 
+## Notes
+
+* I have no intention of implementing a bash script to run this command in the CLI as of yet. My focus is on completion of [`DC4U`](https://github.com/gongahkia/dc4u) for now.
+
 ---
 
 ## Media I referenced

@@ -1,5 +1,7 @@
 # `ooe`
 
+![](https://img.shields.io/badge/OOE_1.0-passing-green)
+
 <img src="https://static.wikia.nocookie.net/cbeebies/images/0/0f/Pocoyo.jpg/revision/latest?cb=20200523202432" height="200" align="right"></img>
 
 ## How did you choose the name?

@@ -6,7 +6,7 @@
 
 ## How did you choose the name?
 
-Ooe.
+![ooe_origin](https://github.com/gongahkia/ooe/assets/117062305/1af4420e-ffba-4dc0-82ae-48044e9c35ae)
 
 ## What is ***ooe***?
 
@@ -16,7 +16,7 @@ The ***ooe*** interpreter compiles `ooe` script to `html`.
 
 ## How does ***ooe*** work?
 
-> Know that this is dumbed down a lot. Detailed reference material can be found below.
+> This is dumbed down a lot. Detailed reference material can be found below.
 
 For that, you'll need some context.
 

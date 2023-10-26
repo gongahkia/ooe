@@ -6,7 +6,7 @@
 
 ## How did you choose the name?
 
-![ooe_origin](https://github.com/gongahkia/ooe/assets/117062305/1af4420e-ffba-4dc0-82ae-48044e9c35ae)
+![ooe_origin](https://github.com/gongahkia/ooe/assets/117062305/436e9d44-b274-4428-8da8-259b7d3a340c)
 
 ## What is ***ooe***?
 

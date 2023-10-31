@@ -2,9 +2,9 @@
 
 ![](https://img.shields.io/badge/OOE_1.0-passing-green)
 
-![ooe_origin](https://github.com/gongahkia/ooe/assets/117062305/436e9d44-b274-4428-8da8-259b7d3a340c)
-
 ## What is ***ooe***?
+
+![ooe_origin](https://github.com/gongahkia/ooe/assets/117062305/436e9d44-b274-4428-8da8-259b7d3a340c)
 
 A badly constructed markup language, ending with the file extension `.ooe`. Think more [groff](https://www.gnu.org/software/groff/), less [markdown](https://www.markdownguide.org/). 
 

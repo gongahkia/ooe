@@ -1,6 +1,6 @@
-# `ooe`
-
 ![](https://img.shields.io/badge/OOE_1.0-passing-green)
+
+# `ooe`
 
 ## What is ***ooe***?
 
